@@ -1,0 +1,58 @@
+﻿<div class="navbar bg-primary navbar-dark navbar-expand-sm">
+    <div class="container">
+        <a href="/" class="navbar-brand">ShopApp</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="navbar-item">
+                <a class="nav-link" href="/products">Products</a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="navbar-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="">Orders</a>
+                </li>
+                if (User.IsInRole("admin"))
+                {
+                    <li class="navbar-item">
+                        <a class="nav-link" asp-controller="admin" asp-action="productlist">Admin Products</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" asp-controller="admin" asp-action="categorylist">Admin Categories</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" asp-controller="admin" asp-action="RoleList">Roles</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" asp-controller="admin" asp-action="UserList">Users</a>
+                    </li>
+                }
+
+            }
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    <a href="/account/manage" class="nav-link">
+                        @User.Identity.Name
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="/account/logout">Logout</a>  @*User giris edibse Logout goresensin*@
+                </li>
+            }
+            else
+            {
+                <li class="navbar-item">
+                    <a class="nav-link" href="/account/login">Login</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="/account/register">Register</a>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
